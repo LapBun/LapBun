@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerController extends AbstractController
 {
     /**
-     * @Route("/customer", app_customer")
+     * @Route("/cus", app_customer")
      */
     public function FunctionName(): Response
     {
@@ -17,4 +17,14 @@ class CustomerController extends AbstractController
             'controller_name' => 'CustomerController',
         ]);
     }
+    /**
+     * @Route("/cu", app_customer")
+     */
+    public function FuName(): Response
+    {
+        return $this->render('customer/index.html.twig', [
+            'controller_name' => 'CustomerController',
+        ]);
+    }
+    
 }
