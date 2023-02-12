@@ -17,14 +17,6 @@ class CustomerController extends AbstractController
             'controller_name' => 'CustomerController',
         ]);
     }
-    /**
-     * @Route("/cu", app_customer")
-     */
-    public function FuName(): Response
-    {
-        return $this->render('customer/index.html.twig', [
-            'controller_name' => 'CustomerController',
-        ]);
-    }
+
     
 }
