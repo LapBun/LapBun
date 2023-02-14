@@ -26,9 +26,12 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
+<<<<<<< HEAD
     #[ORM\Column]
     private ?int $quantity = null;
 
+=======
+>>>>>>> hien
     public function getId(): ?int
     {
         return $this->id;
@@ -63,7 +66,11 @@ class Product
         return $this->created;
     }
 
+<<<<<<< HEAD
     public function setCreated(\DateTimeInterface $created=null): self
+=======
+    public function setCreated(\DateTimeInterface $created =null): self
+>>>>>>> hien
     {
         $this->created = $created;
 
@@ -75,12 +82,17 @@ class Product
         return $this->image;
     }
 
+<<<<<<< HEAD
     public function setImage(?string $image=null): self
+=======
+    public function setImage(?string $image =null): self
+>>>>>>> hien
     {
         $this->image = $image;
 
         return $this;
     }
+<<<<<<< HEAD
 
     public function getQuantity(): ?int
     {
@@ -93,4 +105,6 @@ class Product
 
         return $this;
     }
+=======
+>>>>>>> hien
 }

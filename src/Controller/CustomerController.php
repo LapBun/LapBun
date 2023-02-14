@@ -9,7 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerController extends AbstractController
 {
     /**
+<<<<<<< HEAD
      * @Route("/cus", "name=app_customer")
+=======
+     * @Route("/cus", name="app_customer")
+>>>>>>> hien
      */
     public function FunctionName(): Response
     {
