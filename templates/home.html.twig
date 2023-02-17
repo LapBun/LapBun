@@ -59,19 +59,19 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       
-      {# {% if app.user %}
+      {% if app.user %}
           
           <a class="nav-link me-3" href="#">
             <i class="fas fa-shopping-cart"></i>
           </a>
            Welcome {{ app.user.name }},
-          <a class="nav-link me-3" href="#">Logout</a>
-        {% else %} #}
-        <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i></a>
+          <a class="nav-link me-3" href="{{ path('app_logout') }}">Logout</a>
+        {% else %}
+        <a class="nav-link" href="{{path('app_login')}}"><i class="fas fa-sign-in-alt"></i></a>
         
-          <a class="nav-link" href="#">Register</a>
+          <a class="nav-link" href="{{path('app_register')}}">Register</a>
         
-        {# {% endif %} #}
+        {% endif %}
 
       <!-- Icon -->
   
