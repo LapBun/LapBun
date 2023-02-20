@@ -29,6 +29,12 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <label for="contact-info-vertical">Brand</label>
+                                                {{ form_widget(form.brand, {'attr':{'placeholder':'Brand'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
                                                 <label for="first-name-vertical">Product Date</label>
                                                 {{ form_widget(form.created, {'attr':{'placeholder':'yyyy-mm-dd'}}) }}
                                                 

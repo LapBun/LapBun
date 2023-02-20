@@ -16,6 +16,7 @@ class ProductType extends AbstractType{
        ->add('price')
        ->add('created',DateType::class,['widget'=>'single_text','required'=>false])
        ->add('quantity')
+       ->add('brand')
        ->add('file',FileType::class,['label'=>'Product Image','required'=>false,'mapped'=>false])
        ->add('image',HiddenType::class,['required'=>false])
        ->add('save',SubmitType::class,['label'=>"Confirm"])

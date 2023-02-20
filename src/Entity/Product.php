@@ -29,6 +29,9 @@ class Product
     #[ORM\Column]
     private ?int $quantity = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $brand = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Product
     public function setQuantity(int $quantity): self
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getBrand(): ?string
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?string $brand): self
+    {
+        $this->brand = $brand;
 
         return $this;
     }
