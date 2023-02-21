@@ -47,7 +47,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         }
         $user = $token->getRoleNames();
         if(in_array('ROLE_ADMIN', $user,true))
-        return new RedirectResponse($this->urlGenerator->generate('product_show'));
+        return new RedirectResponse($this->urlGenerator->generate('adminPage'));
         else
         return new RedirectResponse($this->urlGenerator->generate('homepage'));
         // For example:

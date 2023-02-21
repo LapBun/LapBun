@@ -59,9 +59,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('homepage') }}" style="color:black">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color:black">New Product</a>
-                    </li>
                     {% if app.user %}
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
@@ -81,7 +78,7 @@
                     <li class="nav-item">
                         <a class="nav-link" 
                         {# href="{{ path('app_customer_account', {'username': app.user.userIdentifier}) }}" #}
-                         style="color:black">Your Account</a>
+                         style="color:black">Profile</a>
                     </li>
                     {% endif %}
                     {% endif %}
