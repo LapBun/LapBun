@@ -1,12 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RegistrationController!{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block body %}
+
+
+
+
+<html>
+<head>
+<style>
+body {
+    
+}
+</style>
+</head>
+<body>
+</body>
+</html>
+
+<div class="container">
+<h1>Register</h1>
+
+
+</div>
 <div class="container">
     {{ form_start(registrationForm) }}
     {{ form_widget(registrationForm) }}
-    {{ form_end(registrationForm) }}
+    {{ form_end(registrationForm) }}.
+
+    <p class="small mb-3 pb-lg-2">If you have an account<a class="text-black-50"  href="{{ path('app_login') }} "> Login here!</a></p>
+    <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
+    
+
 </div>
+
 {% endblock %}
 
