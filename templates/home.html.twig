@@ -62,12 +62,12 @@
                     {% if app.user %}
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color:black">Cart</a>
+                        <a class="nav-link" href="{{ path('app_show_cart') }}" style="color:black">Cart</a>
                     </li>
                     {% endif %}
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color:black">Cart</a>
+                        <a class="nav-link" href="{{ path('app_cart_page') }}" style="color:black">Cart</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
@@ -129,6 +129,8 @@
               <h5 class="card-title mb-2">{{p.name}}</h5>
             </a>
             <h6 class="mb-3 price">{{p.price}}$</h6>
+            {# <a href="{{ path('app_cart', {'id': p.id}) }}" 
+                class="btn btn-primary">Add to Cart</a> #}
           </div>
         </div>
       </div>
