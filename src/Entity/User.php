@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -27,6 +29,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $address = null;
+
+    #[ORM\Column]
+    private ?int $telephone = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $birthday = null;
+
+    #[ORM\OneToMany(mappedBy: 'uscart', targetEntity: Cart::class, orphanRemoval: true)]
+    private Collection $carts;
+
+    public function __construct()
+    {
+        $this->carts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -116,4 +138,85 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+<<<<<<< HEAD
+=======
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?int
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(int $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(\DateTimeInterface $birthday=null): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cart>
+     */
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    public function addCart(Cart $cart): self
+    {
+        if (!$this->carts->contains($cart)) {
+            $this->carts->add($cart);
+            $cart->setUscart($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): self
+    {
+        if ($this->carts->removeElement($cart)) {
+            // set the owning side to null (unless already changed)
+            if ($cart->getUscart() === $this) {
+                $cart->setUscart(null);
+            }
+        }
+
+        return $this;
+    }
+>>>>>>> 5120660098e179371b9ed3c25a8a0e7840fc9930
 }

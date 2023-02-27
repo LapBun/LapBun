@@ -62,12 +62,12 @@
                     {% if app.user %}
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color:black">Cart</a>
+                        <a class="nav-link" href="{{ path('app_show_cart') }}" style="color:black">Cart</a>
                     </li>
                     {% endif %}
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color:black">Cart</a>
+                        <a class="nav-link" href="{{ path('app_cart_page') }}" style="color:black">Cart</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
@@ -77,7 +77,7 @@
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
                         <a class="nav-link" 
-                        {# href="{{ path('app_customer_account', {'username': app.user.userIdentifier}) }}" #}
+                        href="{{path('user_account')}}"
                          style="color:black">Profile</a>
                     </li>
                     {% endif %}
@@ -112,6 +112,32 @@
     </div>
 </div>
 </div><!-- /.container -->
+  <section>
+  <div class="text-center">
+    <div class="row">
+      {% for p in products %}
+        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card">
+          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+            data-mdb-ripple-color="light">
+            {% set img = p.image %}
+            <img src="{{asset('uploads/'~img)}}"
+              class="w-100" />
+          </div>
+          <div class="card-body">
+            <a href="{{path('product_read',{"id":p.id})}}" class="text-reset">
+              <h5 class="card-title mb-2">{{p.name}}</h5>
+            </a>
+            <h6 class="mb-3 price">{{p.price}}$</h6>
+            {# <a href="{{ path('app_cart', {'id': p.id}) }}" 
+                class="btn btn-primary">Add to Cart</a> #}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+   
   </div>
 </section>
 
