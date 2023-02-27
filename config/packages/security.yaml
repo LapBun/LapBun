@@ -5,25 +5,15 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-<<<<<<< HEAD
         # use to load a user object from the session & other features (e.g. switch_user)
-=======
-        # used to reload user from session & other features (e.g. switch_user)
->>>>>>> 6feda08623b4d236d797f2d6355f981bdad5d585
         app_user_provider:
             entity:
                 class: App\Entity\User
                 property: email
-<<<<<<< HEAD
-        # use to load a user object from the session & other features (e.g. switch_user)
-        # use to load a user object from the session & other features (e.g. switch_user)
-            # id: App\Sercurity\UserProvider
-=======
                 # used to reload user from session & other features (e.g. switch_user)
                 # used to reload user from session & other features (e.g. switch_user)
                 #id: App\Security\UserProvider
 
->>>>>>> 6feda08623b4d236d797f2d6355f981bdad5d585
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -35,11 +25,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-<<<<<<< HEAD
                 target: app_login 
-=======
-                # target: app_any_route
->>>>>>> 6feda08623b4d236d797f2d6355f981bdad5d585
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
