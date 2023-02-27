@@ -83,15 +83,15 @@ class BrandController extends AbstractController
         ]);
     }
 
-    //  /**
-    //  * @Route("/delete/{id}",name="product_delete",requirements={"id"="\d+"})
-    //  */
+     /**
+     * @Route("/delete/{id}",name="brand_delete",requirements={"id"="\d+"})
+     */
 
-    //  public function deleteAction(Request $request, Brand $br): Response
-    //  {
-    //      $this->repo->remove($br,true);
-    //      return $this->redirectToRoute('brand_show', [], Response::HTTP_SEE_OTHER);
-    //  }
+     public function deleteAction(Request $request, Brand $br): Response
+     {
+         $this->repo->remove($br,true);
+         return $this->redirectToRoute('brand_show', [], Response::HTTP_SEE_OTHER);
+     }
 
 
 

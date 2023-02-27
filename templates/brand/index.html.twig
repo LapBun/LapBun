@@ -32,8 +32,8 @@
                                   <td>{{b.product}}</td>
                                   <td>
                                     <a href="{{path('brand_edit',{'id':b.id})}}">Edit</a> 
-                                  <a href="#">Delete</a></td>
-                                  {# {{path('product_delete',{'id':b.id})}} #}
+                                  <a href="{{path('brand_delete',{'id':b.id})}}">Delete</a></td>
+                                  
                               </tr>
                           {% endfor %}
                           
