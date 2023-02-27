@@ -3,13 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Cart;
-use App\Entity\CartDetail;
-use App\Entity\User;
-use App\Repository\CartDetailRepository;
+use App\Entity\Product;
 use App\Repository\CartRepository;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -45,4 +44,18 @@ class CartController extends AbstractController
 
         return $this->redirectToRoute('homepage');
     }
+    /**
+     * @Route("/cart/{id}", name="app_cart")
+     */
+    public function index(CartRepository $repo, ManagerRegistry $reg, Product $p, Request $req): Response
+    {
+        $cart= new Cart();
+        $quantity = $req ->query->get('quantity_input');
+        $cart ->setQuantity($quantity);
+        $cart ->setProcart($p);
+        $cart ->setUscart($this->getUser());
+        $repo -> save($cart,true);
+        return $this->redirectToRoute('homepage');
+    }
+
 }
