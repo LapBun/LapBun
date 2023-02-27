@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +31,15 @@ class MainController extends AbstractController
     public function adminPageAction(): Response{
         return $this->render('admin.html.twig', [
             
+        ]);
+    }
+       /**
+     * @Route("/detail/{id}", name="product_read",requirements={"id"="\d+"})
+     */
+    public function showAction(Product $p): Response
+    {
+        return $this->render('detail.html.twig', [
+            'p'=>$p
         ]);
     }
 }
