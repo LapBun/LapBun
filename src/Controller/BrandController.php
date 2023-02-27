@@ -61,7 +61,38 @@ class BrandController extends AbstractController
             'brand' => $br,
             'form' => $form,
         ]);
+
     }   
+    /**
+     * @Route("/edit/{id}", name="brand_edit",requirements={"id"="\d+"})
+     */
+    public function editAction(Request $req, Brand $br, SluggerInterface $slugger): Response
+    {
+        $form = $this->createForm(BrandType::class, $br);
+        $form->handleRequest($req);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->repo->save($br,true);
+
+            return $this->redirectToRoute('brand_show', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('brand/form.html.twig', [
+            'brand' => $br,
+            'form' => $form,
+        ]);
+    }
+
+    //  /**
+    //  * @Route("/delete/{id}",name="product_delete",requirements={"id"="\d+"})
+    //  */
+
+    //  public function deleteAction(Request $request, Brand $br): Response
+    //  {
+    //      $this->repo->remove($br,true);
+    //      return $this->redirectToRoute('brand_show', [], Response::HTTP_SEE_OTHER);
+    //  }
+
 
 
     
