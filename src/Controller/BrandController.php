@@ -2,17 +2,80 @@
 
 namespace App\Controller;
 
+use App\Entity\Brand;
+use App\Form\BrandType;
+use App\Repository\BrandRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\String\Slugger\SluggerInterface;
+/**
+ * @Route("/brand")
+ */
 class BrandController extends AbstractController
 {
-    #[Route('/brand', name: 'app_brand')]
-    public function index(): Response
+    private BrandRepository $repo;
+    public function __construct(BrandRepository $repo)
+   {
+      $this->repo = $repo;
+   }
+
+       /**
+     * @Route("/", name="brand_show")
+     */
+    public function readAllAction(): Response
     {
+        $brands = $this->repo->findAll();
         return $this->render('brand/index.html.twig', [
-            'controller_name' => 'BrandController',
+            'brands'=>$brands
         ]);
     }
+    
+     /**
+     * @Route("/{id}", name="brand_read",requirements={"id"="\d+"})
+     */
+    public function showAction(Brand $b): Response
+    {
+        return $this->render('detail.html.twig', [
+            'b'=>$b
+        ]);
+    }
+     /**
+     * @Route("/add", name="brand_create")
+     */
+    public function createAction(Request $req, SluggerInterface $slugger): Response
+    {
+        $br = new Brand();
+        $form = $this->createForm(BrandType::class, $br);
+        $form->handleRequest($req);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->repo->save($br,true);
+
+            return $this->redirectToRoute('brand_show', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('brand/form.html.twig', [
+            'brand' => $br,
+            'form' => $form,
+        ]);
+    }   
+
+
+    
+
+
+  
+    // #[Route('/brand', name: 'app_brand')]
+    // public function index(): Response
+    // {
+    //     return $this->render('brand/index.html.twig', [
+    //         'controller_name' => 'BrandController',
+    //     ]);
+    // }
+
+   
+
 }
