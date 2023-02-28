@@ -28,9 +28,9 @@ class ProductController extends AbstractController
      */
     public function readAllAction(): Response
     {
-        $products = $this->repo->findAll();
+        $product = $this->repo->findAll();
         return $this->render('product/index.html.twig', [
-            'products' => $products
+            'products' => $product
         ]);
     }
 
@@ -59,6 +59,23 @@ class ProductController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/edit/{id}", name="product_edit",requirements={"id"="\d+"})
+     */
+    public function editAction(Request $req, Product $p, SluggerInterface $slugger): Response
+    {
+
+        $form = $this->createForm(ProductType::class, $p);
+
+        $form->handleRequest($req);
+        
+        return $this->render("product/form.html.twig", [
+            'form' => $form->createView()
+        ]);
+    }
+
+
     public function uploadImage($imgFile, SluggerInterface $slugger): ?string
     {
         $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
