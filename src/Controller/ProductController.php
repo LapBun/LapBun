@@ -39,7 +39,12 @@ class ProductController extends AbstractController
      */
     public function createAction(Request $req, SluggerInterface $slugger): Response
     {
+        $p = new Product();
+        $form = $this->createForm(ProductType::class, $p);
 
        
+        return $this->render("product/form.html.twig", [
+            'form' => $form->createView()
+        ]);
     }
 }
