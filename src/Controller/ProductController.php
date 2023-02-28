@@ -68,6 +68,20 @@ class ProductController extends AbstractController
 
         $form = $this->createForm(ProductType::class, $p);
 
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($p->getCreated() === null) {
+                $p->setCreated(new \DateTime());
+            }
+            $imgFile = $form->get('file')->getData();
+            if ($imgFile) {
+                $newFilename = $this->uploadImage($imgFile, $slugger);
+                $p->setImage($newFilename);
+            }
+            $this->repo->save($p, true);
+            return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
+        }
         return $this->render("product/form.html.twig", [
             'form' => $form->createView()
         ]);
