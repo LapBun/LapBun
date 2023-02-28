@@ -25,14 +25,7 @@ class MainController extends AbstractController
             'products'=>$products
         ]);
     }
-     /**
-     * @Route("/admin", name="adminPage")
-     */
-    public function adminPageAction(): Response{
-        return $this->render('admin.html.twig', [
-            
-        ]);
-    }
+
        /**
      * @Route("/detail/{id}", name="product_read",requirements={"id"="\d+"})
      */
