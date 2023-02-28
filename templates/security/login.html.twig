@@ -3,12 +3,24 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+
+
+
+<body style="background-color:powderblue;">
+
+
+
+
+
 <section class="vh-50 gradient-custom">
   <div class="container py-5 h-70">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-light text-dark" style="border-radius: 1rem; border: solid 1px black; ">
           <div class="card-body p-5 text-center">
+          
+
+          
           
 <form method="post">
     {% if error %}
@@ -20,8 +32,10 @@
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
+    
 
     <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
+    
     <p class="text-black-50 mb-5">Please enter your username and password!</p>
     <div class="form-outline form-white mb-2">
         <input class="form-control" type="email" value="{{ last_username }}" 
@@ -33,6 +47,7 @@
     </div>
     <p class="small mb-3 pb-lg-2">Don't have an account?<a class="text-black-50" href="{{ path('app_register') }}"> Register here!</a></p>
     <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
+    
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -44,9 +59,15 @@
             </label>
         </div>
     #}
+   
 
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
 </form>
+
+
+
+
+
 {% endblock %}
