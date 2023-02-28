@@ -66,6 +66,19 @@ class CartRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function getProductID($value): array
+    {
+        return $this->createQueryBuilder('cd')
+            ->select('p.id as product, p.price as price, (p.price * cd.quantity) as total, cd.quantity as quantity')
+            ->innerJoin('cd.product', 'p')
+            ->innerJoin('cd.cart', 'c')
+            ->where('cd.cart = :id')
+            ->setParameter('id',$value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Cart[] Returns an array of Cart objects
 //     */

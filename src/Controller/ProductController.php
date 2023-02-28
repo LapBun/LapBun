@@ -109,7 +109,7 @@ class ProductController extends AbstractController
      * @Route("/delete/{id}",name="product_delete",requirements={"id"="\d+"})
      */
 
-    public function deleteAction(Request $request, Product $p): Response
+    public function deleteAction(Product $p): Response
     {
         $this->repo->remove($p,true);
         return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);

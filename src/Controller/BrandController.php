@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BrandController extends AbstractController
 {
-    #[Route('/brand', name: 'app_brand')]
-    public function index(): Response
+    /**
+     * @Route("/brand", name="RouteName")
+     */
+    public function FunctionName(): Response
     {
-        return $this->render('brand/index.html.twig', [
-            'controller_name' => 'BrandController',
-        ]);
+        return $this->render('$0.html.twig', []);
     }
 }

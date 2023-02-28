@@ -31,23 +31,11 @@ class CartController extends AbstractController
             // return $this->json($showcart);
         }
     }
-    /**
-     * @Route("/cart/delete/{id}", name="app_cart_delete")
-     */
-    public function delete($id, CartRepository $repo, ManagerRegistry $reg): Response
-    {
-        $entity = $reg->getManager();
-        $cartd = $repo->find($id);
 
-        $entity->remove($cartd);
-        $entity->flush();
-
-        return $this->redirectToRoute('homepage');
-    }
     /**
      * @Route("/cart/{id}", name="app_cart")
      */
-    public function index(CartRepository $repo, ManagerRegistry $reg, Product $p, Request $req): Response
+    public function index(CartRepository $repo, Product $p, Request $req): Response
     {
         $cart= new Cart();
         $quantity = $req ->query->get('quantity_input');
@@ -56,6 +44,17 @@ class CartController extends AbstractController
         $cart ->setUscart($this->getUser());
         $repo -> save($cart,true);
         return $this->redirectToRoute('homepage');
+    }
+    /**
+     * @Route("/cart/delete/{id}", name="app_cart_delete")
+     */
+    public function delete($id, ManagerRegistry $reg): Response
+    {
+        $entity = $reg->getManager();
+        $entity -> remove($id);
+        $entity ->flush();
+
+        return $this->redirectToRoute('app_show_cart');
     }
 
 }
