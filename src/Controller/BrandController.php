@@ -93,20 +93,4 @@ class BrandController extends AbstractController
          return $this->redirectToRoute('brand_show', [], Response::HTTP_SEE_OTHER);
      }
 
-
-
-    
-
-
-  
-    // #[Route('/brand', name: 'app_brand')]
-    // public function index(): Response
-    // {
-    //     return $this->render('brand/index.html.twig', [
-    //         'controller_name' => 'BrandController',
-    //     ]);
-    // }
-
-   
-
 }
