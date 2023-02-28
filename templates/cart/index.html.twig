@@ -49,7 +49,7 @@
                       <h6 class="mb-0">${{c.price * c.quantity}}</h6>
                     </div>
                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="{{path('app_cart_delete', {'id': c.id})}}" class="text-muted"><i class="bi bi-x-square">Del</i></a>
+                      <a href="{{path('app_cart_delete', {'id': c.cid})}}" class="text-muted"><i class="bi bi-x-square">Del</i></a>
                     </div>
                   </div>
                   {% set sum = sum + (c.price * c.quantity) %}
