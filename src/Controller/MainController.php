@@ -25,14 +25,7 @@ class MainController extends AbstractController
             'products'=>$products
         ]);
     }
-     /**
-     * @Route("/admin", name="adminPage")
-     */
-    public function adminPageAction(): Response{
-        return $this->render('admin.html.twig', [
-            
-        ]);
-    }
+
        /**
      * @Route("/detail/{id}", name="product_read",requirements={"id"="\d+"})
      */
@@ -40,6 +33,15 @@ class MainController extends AbstractController
     {
         return $this->render('detail.html.twig', [
             'p'=>$p
+        ]);
+    }
+    /**
+     * @Route("/home/product_detail/{id}", name="app_product_detail", methods={"GET"})
+     */
+    public function detail(Product $product): Response
+    {
+        return $this->render('product/detail.html.twig', [
+            'product' => $product,
         ]);
     }
 }

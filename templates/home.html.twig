@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{% block title %}Welcome our shop!{% endblock %}</title>
+    <title>{% block title %}Welcome to shop!{% endblock %}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -35,7 +35,7 @@
                         <div class="mb-3">
                             Welcome {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"> Logout</a>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('product_show') }}"> || <i class="bi bi-gear-fill">Administration</i></a>
+                        <a href="{{ path('adminPage') }}"> || <i class="bi bi-gear-fill">Administration</i></a>
                     {% endif %}
                         </div>
                     {% else %}
