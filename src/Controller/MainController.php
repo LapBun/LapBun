@@ -35,4 +35,13 @@ class MainController extends AbstractController
             'p'=>$p
         ]);
     }
+    /**
+     * @Route("/home/product_detail/{id}", name="app_product_detail", methods={"GET"})
+     */
+    public function detail(Product $product): Response
+    {
+        return $this->render('product/detail.html.twig', [
+            'product' => $product,
+        ]);
+    }
 }
