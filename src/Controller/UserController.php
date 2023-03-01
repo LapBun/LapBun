@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/admin/user", "name=users")
+     * @Route("/admin/user", name="app_users")
      */
     public function index(UserRepository $repo): Response
     {
