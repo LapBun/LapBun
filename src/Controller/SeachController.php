@@ -16,12 +16,9 @@ class SearchController extends AbstractController
     public function searchAction(ProductRepository $repo, Request $req): Response
     {
         $mess = $req->query->get('search');
-        $products = $repo->findBySearchProduct($mess);
-        
+        $product = $repo->searchproduct($mess);
         return $this->render('search/index.html.twig', [
-            'search'=>$products
-            
+            'search'=>$product
         ]);
-
     }
 }
