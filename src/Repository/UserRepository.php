@@ -60,13 +60,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     */
    public function getInfoCus($user): array
    {
-        return $this->createQueryBuilder('c')
-        ->select('c.email email, c.address address, c.name name')
-        ->where('c.id = :user')
+        return $this->createQueryBuilder('u')
+        ->select('u.email email, u.address address, u.name name')
+        ->where('u.id = :user')
         ->setParameter('user', $user)
         ->getQuery()
-        ->getResult()
-                    ;
+        ->getResult();
    }
 
 //    public function findOneBySomeField($value): ?User
