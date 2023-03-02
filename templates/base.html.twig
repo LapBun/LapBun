@@ -60,15 +60,11 @@
                         <a class="nav-link" href="{{ path('homepage') }}" style="color:black">Home</a>
                     </li>
                     {% if app.user %}
-                    {% if is_granted('ROLE_USER') %}
+                    {% if is_granted('ROLE_USER','ROLE_ADMIN') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color:black">Cart</a>
+                        <a class="nav-link" href="{{ path('app_show_cart') }}" style="color:black">Cart</a>
                     </li>
                     {% endif %}
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color:black">Cart</a>
-                    </li>
                     {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="#aboutus" style="color:black">About us</a>
