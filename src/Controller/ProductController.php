@@ -27,9 +27,9 @@ class ProductController extends AbstractController
      */
     public function readAllAction(): Response
     {
-        $products = $this->repo->findAll();
+        $product = $this->repo->findAll();
         return $this->render('product/index.html.twig', [
-            'products'=>$products
+            'products'=>$product
         ]);
     }
 
@@ -97,8 +97,8 @@ class ProductController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
-    public function uploadImage($imgFile, SluggerInterface $slugger): ?string{
+    public function uploadImage($imgFile, SluggerInterface $slugger): ?string
+    {
         $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $slugger->slug($originalFilename);
         $newFilename = $safeFilename.'-'.uniqid().'.'.$imgFile->guessExtension();

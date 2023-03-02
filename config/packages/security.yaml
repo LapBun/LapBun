@@ -10,9 +10,10 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
-        # use to load a user object from the session & other features (e.g. switch_user)
-        # use to load a user object from the session & other features (e.g. switch_user)
-            # id: App\Sercurity\UserProvider
+                # used to reload user from session & other features (e.g. switch_user)
+                # used to reload user from session & other features (e.g. switch_user)
+                #id: App\Security\UserProvider
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

@@ -73,7 +73,7 @@
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
                         <a class="nav-link" 
-                        {# href="{{ path('app_customer_account', {'username': app.user.userIdentifier}) }}" #}
+                         href="{{ path('user_account') }}"
                          style="color:black">Profile</a>
                     </li>
                     {% endif %}

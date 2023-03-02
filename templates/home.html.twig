@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{% block title %}Welcome to shop!{% endblock %}</title>
+    <title>{% block title %}Welcome our shop!{% endblock %}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -35,7 +35,7 @@
                         <div class="mb-3">
                             Welcome {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"> Logout</a>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('adminPage') }}"> || <i class="bi bi-gear-fill">Administration</i></a>
+                        <a href="{{ path('product_show') }}"> || <i class="bi bi-gear-fill">Administration</i></a>
                     {% endif %}
                         </div>
                     {% else %}
@@ -60,7 +60,7 @@
                         <a class="nav-link" href="{{ path('homepage') }}" style="color:black">Home</a>
                     </li>
                     {% if app.user %}
-                    {% if is_granted('ROLE_USER') %}
+                    {% if is_granted('ROLE_USER','ROLE_ADMIN') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_show_cart') }}" style="color:black">Cart</a>
                     </li>
@@ -69,15 +69,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#aboutus" style="color:black">About us</a>
                     </li>
-                    {% if app.user %}
-                    {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
                         <a class="nav-link" 
-                        href="{{path('user_account')}}"
+                        href="{{ path('user_account') }}"
                          style="color:black">Profile</a>
                     </li>
-                    {% endif %}
-                    {% endif %}
                     
                 </ul>
                 <div class="navbar-nav ms-auto">
@@ -94,21 +90,7 @@
         </div>
     </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            {% for flash_message in app.session.flashBag.get('notice') %}
-                <div class="alert alert-success">{{ flash_message }}</div>
-            {% endfor %}
-            {% for flash_message in app.session.flashBag.get('error') %}
-                <div class="alert alert-danger">{{ flash_message }}</div>
-            {% endfor %}
-            {% block body %}{% endblock %}
-        </div>
-    </div>
-</div>
-</div><!-- /.container -->
-  <section>
+      <section>
   <div class="text-center">
     <div class="row">
       {% for p in products %}
@@ -125,15 +107,28 @@
               <h5 class="card-title mb-2">{{p.name}}</h5>
             </a>
             <h6 class="mb-3 price">{{p.price}}$</h6>
-            {# <a href="{{ path('app_cart', {'id': p.id}) }}" 
-                class="btn btn-primary">Add to Cart</a> #}
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
+  </div>
+</section>
 
-   
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-success">{{ flash_message }}</div>
+            {% endfor %}
+            {% for flash_message in app.session.flashBag.get('error') %}
+                <div class="alert alert-danger">{{ flash_message }}</div>
+            {% endfor %}
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</div>
+</div><!-- /.container -->
   </div>
 </section>
 
