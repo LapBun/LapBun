@@ -8,12 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OrdersController extends AbstractController
 {
-    #[Route('/orders', name: 'app_orders')]
-    public function index(): Response
+    /**
+     * @Route("/orders", name="orderspage")
+     */
+    public function FunctionName(): Response
     {
-        return $this->render('orders/index.html.twig', [
-            'controller_name' => 'OrdersController',
-        ]);
+        return $this->render('$0.html.twig', []);
     }
-
 }
