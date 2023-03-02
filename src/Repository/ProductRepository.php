@@ -39,6 +39,7 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+<<<<<<< HEAD
    /**
     * @return Product[] Returns an array of Product objects
     */
@@ -75,4 +76,15 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+=======
+    //    public function findOneBySomeField($value): ?Product
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
+>>>>>>> kien
 }
