@@ -13,7 +13,8 @@ class OrdersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('address')
+            ->add('createdate',DateType::class,['widget'=>'single_text','required'=>false])
+            ->add('')
         ;
     }
     public function configureOptions(OptionsResolver $resolver): void
