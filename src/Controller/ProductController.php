@@ -14,7 +14,6 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 /**
  * @Route("/product")
  */
-
 class ProductController extends AbstractController
 {
     private ProductRepository $repo;
@@ -32,17 +31,6 @@ class ProductController extends AbstractController
             'products'=>$product
         ]);
     }
-
-     /**
-     * @Route("/{id}", name="product_read",requirements={"id"="\d+"})
-     */
-    public function showAction(Product $p): Response
-    {
-        return $this->render('detail.html.twig', [
-            'p'=>$p
-        ]);
-    }
-
      /**
      * @Route("/add", name="product_create")
      */
@@ -112,14 +100,14 @@ class ProductController extends AbstractController
         }
         return $newFilename;
     }
-
     /**
      * @Route("/delete/{id}",name="product_delete",requirements={"id"="\d+"})
      */
 
-    public function deleteAction(Request $request, Product $p): Response
-    {
-        $this->repo->remove($p,true);
-        return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
-    }
+     public function deleteAction(Request $request, Product $p): Response
+     {
+         $this->repo->remove($p,true);
+         return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
+     }
+
 }

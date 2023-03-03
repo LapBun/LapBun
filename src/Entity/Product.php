@@ -37,9 +37,13 @@ class Product
     #[ORM\OneToMany(mappedBy: 'procart', targetEntity: Cart::class, orphanRemoval: true)]
     private Collection $carts;
 
+    #[ORM\ManyToMany(targetEntity: Orders::class, mappedBy: 'product')]
+    private Collection $r;
+
     public function __construct()
     {
         $this->carts = new ArrayCollection();
+        $this->r = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,5 +151,13 @@ class Product
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Orders>
+     */
+    public function getR(): Collection
+    {
+        return $this->r;
     }
 }

@@ -79,6 +79,22 @@ class CartRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+    * @return Cart[] Returns an array of Cart objects
+    */
+    public function getCart($value): array
+    {
+        return $this->createQueryBuilder('c')
+         ->select('c.quantity as qty, p.price as price, p.image as image, p.name as name, u.email as email')
+             ->innerJoin('c.procart','p')
+             ->innerJoin('c.uscart','u')
+            ->where('u.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
+
 //    /**
 //     * @return Cart[] Returns an array of Cart objects
 //     */

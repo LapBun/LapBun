@@ -63,4 +63,16 @@ class OrdersRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+/**
+    * @return Orders[] Returns an array of Cart objects
+    */
+    public function showOrders(): array
+    {
+        return $this->createQueryBuilder('c')
+         ->select('o.createdate as date')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
 }
