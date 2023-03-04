@@ -70,7 +70,7 @@
                         <a class="nav-link" href="#aboutus" style="color:black">About us</a>
                     </li>
                     {% if app.user %}
-                    {% if is_granted('ROLE_USER') %}
+                    {% if is_granted('ROLE_USER','ROLE_ADMIN') %}
                     <li class="nav-item">
                         <a class="nav-link" 
                          href="{{ path('user_account') }}"

@@ -16,7 +16,7 @@ class OrdersController extends AbstractController
     /**
      * @Route("/add/orders", name="add_order")
      */
-    public function orderAction(CartRepository $repo,OrdersRepository $Orepo,Request $req, ManagerRegistry $red): Response
+    public function orderAction(CartRepository $repo,Request $req, ManagerRegistry $red): Response
     {
         
         $user = $this->getUser();
@@ -24,7 +24,6 @@ class OrdersController extends AbstractController
         $get = $repo->getCart($user);
 
         foreach ($get as $i) {
-            // $order->setCreatedate(DateTime().current());
             $order = new Orders();
             $email = $get[0]['email'];
             $product = $get[0]['name'];

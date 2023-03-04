@@ -152,12 +152,4 @@ class Product
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, Orders>
-     */
-    public function getR(): Collection
-    {
-        return $this->r;
-    }
 }
