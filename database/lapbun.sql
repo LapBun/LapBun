@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 02, 2023 lúc 05:47 PM
+-- Thời gian đã tạo: Th3 05, 2023 lúc 08:23 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.0.25
 
@@ -30,21 +30,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `brand` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `product` varchar(255) NOT NULL
+  `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `brand`
 --
 
-INSERT INTO `brand` (`id`, `name`, `description`, `product`) VALUES
-(1, 'Disney land', 'Disneyland Park is the first theme park of the Walt Disney Company built on the two theme parks at the Disneyland Resort in Anaheim.', 'Figures'),
-(2, 'Lego', 'Lego is a line of assembled toys under the Lego Group based in Billund, Denmark.', 'lego toy'),
-(3, 'One piece', 'One Piece, once published in Vietnam under the name Pirate Island is a manga for teenagers by author Oda Eiichiro.', 'Figures'),
-(4, 'Dragon ball', 'Manga popular of art Akkiratoriyama', 'Figures'),
-(5, 'Naruto', 'Anime about ninja', 'Figures'),
-(6, 'AOT', 'Attack on Titan', 'Figures');
+INSERT INTO `brand` (`id`, `name`, `description`) VALUES
+(1, 'Disney land', 'Disneyland Park is the first theme park of the Walt Disney Company built on the two theme parks at the Disneyland Resort in Anaheim.'),
+(2, 'Lego', 'Lego is a line of assembled toys under the Lego Group based in Billund, Denmark.'),
+(3, 'One piece', 'One Piece, once published in Vietnam under the name Pirate Island is a manga for teenagers by author Oda Eiichiro.'),
+(4, 'Dragon ball', 'Manga popular of art Akkiratoriyama'),
+(5, 'Naruto', 'Anime about ninja'),
+(6, 'AOT', 'Attack on Titan');
 
 -- --------------------------------------------------------
 
@@ -64,8 +63,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `procart_id`, `uscart_id`, `quantity`) VALUES
-(1, 1, 6, 1),
-(3, 1, 6, 123);
+(6, 7, 6, 1),
+(7, 7, 9, 1),
+(8, 7, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,11 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230221113330', '2023-02-21 12:33:40', 59),
 ('DoctrineMigrations\\Version20230221132331', '2023-02-21 14:23:41', 187),
 ('DoctrineMigrations\\Version20230301184230', '2023-03-01 19:42:44', 1064),
-('DoctrineMigrations\\Version20230302110306', '2023-03-02 12:03:14', 63);
+('DoctrineMigrations\\Version20230302110306', '2023-03-02 12:03:14', 63),
+('DoctrineMigrations\\Version20230303104910', '2023-03-03 11:49:14', 259),
+('DoctrineMigrations\\Version20230303105435', '2023-03-03 11:54:43', 102),
+('DoctrineMigrations\\Version20230305174947', '2023-03-05 18:49:58', 1030),
+('DoctrineMigrations\\Version20230305180403', '2023-03-05 19:04:13', 166);
 
 -- --------------------------------------------------------
 
@@ -123,6 +127,15 @@ CREATE TABLE `orders` (
   `oproduct` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`id`, `createdate`, `quantity`, `ouser`, `oproduct`) VALUES
+(1, '2023-03-04', 1, 'An@gmail.com', 'Enel'),
+(6, '2023-03-04', 1, 'An@gmail.com', 'Enel'),
+(7, '2023-03-04', 1, 'An@gmail.com', 'Enel');
+
 -- --------------------------------------------------------
 
 --
@@ -136,22 +149,22 @@ CREATE TABLE `product` (
   `created` date NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `quantity` int(11) NOT NULL,
-  `brand` varchar(255) DEFAULT NULL
+  `brand_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `price`, `created`, `image`, `quantity`, `brand`) VALUES
-(1, 'Goku', 1500, '2023-02-14', 'GokuSSj1-640097201bffb.jpg', 12, 'Dragon Ball'),
-(7, 'Enel', 1250, '2023-01-17', 'Enel-640099796f873.jpg', 16, 'One piece'),
-(8, 'Luffy Gear 4', 1625, '2023-01-18', 'LuffyG4Wano-6400999d0a17d.jpg', 32, 'One piece'),
-(9, 'Luffy Gear 4 bound man', 1725, '2023-01-12', 'LuffyG4-640099f421c2d.jpg', 16, 'One piece'),
-(10, 'Levi', 1360, '2023-02-08', 'levi-64009aa5a6456.webp', 13, 'AOT'),
-(11, 'Naruto kyubi', 1725, '2023-02-09', 'NarutoKuybi-64009accb5755.jpg', 13, 'Naruto'),
-(12, 'Dragon ball combo', 3636, '2023-01-13', 'ComboS11SDBZ-64009b0e522e8.jpg', 3, 'Dragon Ball'),
-(13, 'Titan iron amor', 1120, '2023-01-19', 'AoT-64009b66e5892.webp', 6, 'AOT');
+INSERT INTO `product` (`id`, `name`, `price`, `created`, `image`, `quantity`, `brand_id`) VALUES
+(1, 'Goku', 1500, '2023-02-14', 'GokuSSj1-640097201bffb.jpg', 12, 4),
+(7, 'Enel', 1250, '2023-01-17', 'Enel-640099796f873.jpg', 16, 3),
+(8, 'Luffy Gear 4', 1625, '2023-01-18', 'LuffyG4Wano-6400999d0a17d.jpg', 32, 3),
+(9, 'Luffy Gear 4 bound man', 1725, '2023-01-12', 'LuffyG4-640099f421c2d.jpg', 16, 3),
+(10, 'Levi', 1360, '2023-02-08', 'levi-64009aa5a6456.webp', 13, 6),
+(11, 'Naruto kyubi', 1725, '2023-02-09', 'NarutoKuybi-64009accb5755.jpg', 13, 5),
+(12, 'Dragon ball combo', 3636, '2023-01-13', 'ComboS11SDBZ-64009b0e522e8.jpg', 3, 4),
+(13, 'Obito', 1120, '2023-01-19', 'Obito-6402958688b96.webp', 13, 5);
 
 -- --------------------------------------------------------
 
@@ -225,7 +238,8 @@ ALTER TABLE `orders`
 -- Chỉ mục cho bảng `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_D34A04AD44F5D008` (`brand_id`);
 
 --
 -- Chỉ mục cho bảng `user`
@@ -248,7 +262,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `messenger_messages`
@@ -260,7 +274,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
@@ -284,6 +298,12 @@ ALTER TABLE `user`
 ALTER TABLE `cart`
   ADD CONSTRAINT `FK_BA388B745E4A66B` FOREIGN KEY (`procart_id`) REFERENCES `product` (`id`),
   ADD CONSTRAINT `FK_BA388B7F95B1686` FOREIGN KEY (`uscart_id`) REFERENCES `user` (`id`);
+
+--
+-- Các ràng buộc cho bảng `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `FK_D34A04AD44F5D008` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
