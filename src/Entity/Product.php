@@ -31,19 +31,15 @@ class Product
     #[ORM\Column]
     private ?int $quantity = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $brand = null;
 
     #[ORM\OneToMany(mappedBy: 'procart', targetEntity: Cart::class, orphanRemoval: true)]
     private Collection $carts;
 
-    #[ORM\ManyToMany(targetEntity: Orders::class, mappedBy: 'product')]
-    private Collection $r;
-
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Brand $brand = null;
     public function __construct()
     {
         $this->carts = new ArrayCollection();
-        $this->r = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,19 +106,6 @@ class Product
 
         return $this;
     }
-
-    public function getBrand(): ?string
-    {
-        return $this->brand;
-    }
-
-    public function setBrand(?string $brand): self
-    {
-        $this->brand = $brand;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Cart>
      */
@@ -137,7 +120,6 @@ class Product
             $this->carts->add($cart);
             $cart->setProcart($this);
         }
-
         return $this;
     }
 
@@ -149,6 +131,17 @@ class Product
                 $cart->setProcart(null);
             }
         }
+        return $this;
+    }
+
+    public function getBrand(): ?Brand
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?Brand $brand): self
+    {
+        $this->brand = $brand;
 
         return $this;
     }

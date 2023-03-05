@@ -19,17 +19,14 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Description</th>
-                            <th>Product</th>
-                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
                           {% for b in brands %}
                               <tr>
-                                  <td>{{ b.id}}</td>
-                                  <td>{{ b.name}}</td>
+                                  <td>{{b.id}}</td>
+                                  <td>{{b.name}}</td>
                                   <td>{{b.description}}</td>
-                                  <td>{{b.product}}</td>
                                   <td>
                                     <a href="{{path('brand_edit',{'id':b.id})}}">Edit</a> 
                                   <a onclick="return confirm('are you sure?')" href="{{path('brand_delete',{'id':b.id})}}">Delete</a></td>

@@ -6,11 +6,10 @@ use App\Entity\Brand;
 use App\Form\BrandType;
 use App\Repository\BrandRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
+
 /**
  * @Route("/brand")
  */
@@ -32,16 +31,6 @@ class BrandController extends AbstractController
             'brands'=>$brands
         ]);
     }
-    
-     /**
-     * @Route("/{id}", name="brand_read",requirements={"id"="\d+"})
-     */
-    public function showAction(Brand $b): Response
-    {
-        return $this->render('detail.html.twig', [
-            'b'=>$b
-        ]);
-    }
      /**
      * @Route("/add", name="brand_create")
      */
@@ -50,18 +39,15 @@ class BrandController extends AbstractController
         $br = new Brand();
         $form = $this->createForm(BrandType::class, $br);
         $form->handleRequest($req);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->repo->save($br,true);
 
             return $this->redirectToRoute('brand_show', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('brand/form.html.twig', [
             'brand' => $br,
-            'form' => $form,
+            'form' => $form
         ]);
-
     }   
     /**
      * @Route("/edit/{id}", name="brand_edit",requirements={"id"="\d+"})
@@ -79,7 +65,7 @@ class BrandController extends AbstractController
 
         return $this->renderForm('brand/form.html.twig', [
             'brand' => $br,
-            'form' => $form,
+            'form' => $form
         ]);
     }
 

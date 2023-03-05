@@ -15,7 +15,6 @@ class BrandType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('product')
             ->add('save',SubmitType::class,['label'=>"Confirm"])
         ;
     }
